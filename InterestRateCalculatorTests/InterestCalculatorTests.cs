@@ -11,37 +11,106 @@ namespace InterestRateCalculator.Tests
     [TestClass()]
     public class InterestCalculatorTests
     {
-        public double CheckVal(double accAmnt)
-        {
-            // Correct Interest amount to charge
-            if (accAmnt > 0 && accAmnt < 1000)
-                return 0.01;
-            if (accAmnt >= 1000 && accAmnt < 5000)
-                return 0.015;
-            if (accAmnt >= 5000 && accAmnt < 10000)
-                return 0.02;
-            if (accAmnt >= 10000 && accAmnt < 50000)
-                return 0.025;
-            if (accAmnt >= 50000)
-                return 0.03;
-            else
-                return 0; 
-        }
-        [TestMethod()]
-        public void calculateIntrTest()
-        {
-            // Arrange 
-            Random randomNum = new Random();
-            double accBalance = AccBalance.accTotlBal();
-            double interst = CheckVal(accBalance);
 
-            InterestCalculator savingsAccountCalculator = new InterestCalculator();
-            Double expctAccBalance = Math.Round((accBalance * interst), 2);
-            // Act            
-            double intersAmount = Math.Round(savingsAccountCalculator.calculateIntr(accBalance), 2);
+        // Arrange
+        InterestCalculator interestCacl = new InterestCalculator();
+
+        [TestMethod()]
+        public void ClassConstructor()
+        {
+            //Act
+            Assert.IsNotNull(interestCacl);
+        }
+
+        [TestMethod()]
+        public void PassPositiveBalanceReturnsAValue()
+        {
+            // Act
+            double interest = interestCacl.calculateIntr(1000);
+            // Assert
+            Assert.IsNotNull(interest);
+        }
+
+        [TestMethod()]
+        public void PassNegativeBalanceReturnsZero()
+        {
+            // Act
+            double interest = interestCacl.calculateIntr(-650);
+            // Assert
+            Assert.AreEqual(interest, 0.0);
+        }
+
+        [TestMethod()]
+        public void PassBalanceForOnePercentInterest()
+        {
+            // Arrange
+            double bankBal = 100;
+            double expectedAmount = 1;
+
+            //Act 
+            double interestAmount = interestCacl.calculateIntr(bankBal);
+
+            // Aseert
+            Assert.AreEqual(expectedAmount, interestCacl.calculateIntr(bankBal), 0.001);
+
+        }
+
+        [TestMethod()]
+        public void PassBalanceForOnePointFivePercentInterest()
+        {
+            // Arrange
+            double bankBal = 3560.10;
+            double expectedAmount = 53.40;
+
+            //Act 
+            double interestAmount = interestCacl.calculateIntr(bankBal);
 
             // Assert
-            Assert.AreEqual(expctAccBalance, intersAmount);
+            Assert.AreEqual(expectedAmount, interestCacl.calculateIntr(bankBal), 0.001);
         }
+
+
+        [TestMethod()]
+        public void PassBalanceForTwoPercentInterest()
+        {
+            // Arrange
+            double bankBal = 7865.32;
+            double expectedAmount = 157.31;
+
+            //Act 
+            double interestAmount = interestCacl.calculateIntr(bankBal);
+
+            // Assert
+            Assert.AreEqual(expectedAmount, interestAmount, 0.001);
+        }
+
+        [TestMethod()]
+        public void PassBalanceForTwoPointFivePercentInterest()
+        {
+            // Arrange
+            double bankBal = 22000;
+            double expectedAmount = 550;
+
+            //Act 
+            double interestAmount = interestCacl.calculateIntr(bankBal);
+
+            // Assert
+            Assert.AreEqual(expectedAmount, interestCacl.calculateIntr(bankBal), 0.001);
+        }
+
+        [TestMethod()]
+        public void PassBalanceForThreePercentInterest()
+        {
+            // Arrange
+            double bankBal = 98256.35;
+            double expectedAmount = 2947.69;
+
+            //Act 
+            double interestAmount = interestCacl.calculateIntr(bankBal);
+
+            // Assert
+            Assert.AreEqual(expectedAmount, interestCacl.calculateIntr(bankBal), 0.001);
+        }
+
     }
 }
