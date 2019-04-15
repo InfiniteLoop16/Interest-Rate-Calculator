@@ -46,7 +46,6 @@ namespace InterestRateCalculator.Tests
             // Arrange
             double bankBal = 100;
             double expectedAmount = 1;
-
             //Act 
             double interestAmount = interestCacl.calculateIntr(bankBal);
 
@@ -60,11 +59,9 @@ namespace InterestRateCalculator.Tests
         {
             // Arrange
             double bankBal = 3560.10;
-            double expectedAmount = 53.40;
-
+            double expectedAmount = 53.401;
             //Act 
             double interestAmount = interestCacl.calculateIntr(bankBal);
-
             // Assert
             Assert.AreEqual(expectedAmount, interestCacl.calculateIntr(bankBal), 0.001);
         }
@@ -75,11 +72,9 @@ namespace InterestRateCalculator.Tests
         {
             // Arrange
             double bankBal = 7865.32;
-            double expectedAmount = 157.31;
-
+            double expectedAmount = 157.306;
             //Act 
             double interestAmount = interestCacl.calculateIntr(bankBal);
-
             // Assert
             Assert.AreEqual(expectedAmount, interestAmount, 0.001);
         }
@@ -90,10 +85,8 @@ namespace InterestRateCalculator.Tests
             // Arrange
             double bankBal = 22000;
             double expectedAmount = 550;
-
             //Act 
             double interestAmount = interestCacl.calculateIntr(bankBal);
-
             // Assert
             Assert.AreEqual(expectedAmount, interestCacl.calculateIntr(bankBal), 0.001);
         }
@@ -104,10 +97,8 @@ namespace InterestRateCalculator.Tests
             // Arrange
             double bankBal = 98256.35;
             double expectedAmount = 2947.69;
-
             //Act 
             double interestAmount = interestCacl.calculateIntr(bankBal);
-
             // Assert
             Assert.AreEqual(expectedAmount, interestCacl.calculateIntr(bankBal), 0.001);
         }
